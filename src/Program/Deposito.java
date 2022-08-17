@@ -12,22 +12,22 @@ public class Deposito {
 		Scanner sc = new Scanner(System.in);
 		double deposito = 0.00;
 		
-		// Captura de dados.
 		
+		// Captura de dados.
 		System.out.println("BEM VINDO AO CHAVE BANK.");
 		System.out.println();
 		
 		System.out.print("Digite o numero da conta: ");
 		int numberConta = sc.nextInt();
 		
+		sc.nextLine();
 		System.out.print("Digite seu nome completo: ");
-		String titular = sc.next();
+		String titular = sc.nextLine();
 		
 		System.out.print("Gostaria de realizar um deposito? (s/n) ");
 		char accept = sc.next().charAt(0);
 		
 		//forçar cliente a digitar caracter correto.
-		
 		while(accept != 's' && accept != 'n') {
 			System.out.print("Opção invalido. Apenas 'S' para sim ou 'N' para não. ");
 			accept = sc.next().charAt(0);
@@ -44,15 +44,29 @@ public class Deposito {
 		Construtor conta = new Construtor();
 		conta.getNumberConta();
 		conta.setTitular(titular);
-		
 		conta.deposito(deposito);
-		System.out.println();
 		
 		// Dados bancários
-		
+		System.out.println();
 		System.out.println("== DADOS BANCARIOS ==");
-		System.out.printf("Nome: %s%nNº da conta: %d%nValor de deposito: %.2f",titular, numberConta,deposito);
-		// falta correção dos dados bancarios para emitir certo e falta corrigir o WHILE
+		System.out.printf("Nome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
+		
+		System.out.println();
+		System.out.print("Qual valor que gostaria de depositar? ");
+		deposito = sc.nextDouble();
+		conta.deposito(deposito);
+		
+		System.out.println();
+		System.out.printf("ATUALIZADO:%nNome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
+		
+		System.out.println();
+		System.out.print("Qual valor que gostaria de sacar? ");
+		double saque = sc.nextDouble();
+		conta.saque(saque);
+		
+		System.out.println();
+		System.out.printf("ATUALIZADO:%nNome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
+		
 		
 		sc.close();
 	}
