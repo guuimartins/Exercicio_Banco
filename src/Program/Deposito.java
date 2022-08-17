@@ -42,7 +42,7 @@ public class Deposito {
 		}
 		
 		
-		// Dados bancários
+		// Movimentação de conta
 		System.out.println();
 		System.out.println(conta);
 
