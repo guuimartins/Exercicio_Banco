@@ -10,8 +10,7 @@ public class Deposito {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		double deposito = 0.00;
-		
+		Construtor conta;
 		
 		// Captura de dados.
 		System.out.println("BEM VINDO AO CHAVE BANK.");
@@ -20,8 +19,8 @@ public class Deposito {
 		System.out.print("Digite o numero da conta: ");
 		int numberConta = sc.nextInt();
 		
-		sc.nextLine();
 		System.out.print("Digite seu nome completo: ");
+		sc.nextLine();
 		String titular = sc.nextLine();
 		
 		System.out.print("Gostaria de realizar um deposito? (s/n) ");
@@ -35,38 +34,31 @@ public class Deposito {
 		
 		if(accept == 's') {
 			System.out.print("Digite o valor que gostaria de depositar: ");
-			deposito = sc.nextDouble();
-		} else {
-			deposito = 0.00;
+			double depositoInicial = sc.nextDouble();
+			conta = new Construtor(titular, numberConta, depositoInicial);
+		} 
+		else {
+			conta = new Construtor(titular, numberConta);
 		}
 		
-		//chamada do Construtor
-		Construtor conta = new Construtor();
-		conta.getNumberConta();
-		conta.setTitular(titular);
-		conta.deposito(deposito);
 		
 		// Dados bancários
 		System.out.println();
-		System.out.println("== DADOS BANCARIOS ==");
-		System.out.printf("Nome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
+		System.out.println(conta);
+
+		System.out.println();
+		System.out.print("Digite um valor para deposito: ");
+		double valorDeposito = sc.nextDouble();
+		conta.deposito(valorDeposito);
+		System.out.println("Conta atualizada");
+		System.out.println(conta);
 		
 		System.out.println();
-		System.out.print("Qual valor que gostaria de depositar? ");
-		deposito = sc.nextDouble();
-		conta.deposito(deposito);
-		
-		System.out.println();
-		System.out.printf("ATUALIZADO:%nNome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
-		
-		System.out.println();
-		System.out.print("Qual valor que gostaria de sacar? ");
-		double saque = sc.nextDouble();
-		conta.saque(saque);
-		
-		System.out.println();
-		System.out.printf("ATUALIZADO:%nNome: %s%nNº da conta: %d%nValor de deposito: %.2f", conta.getTitular(), numberConta, conta.getSaldo());
-		
+		System.out.print("Digite um valor para saque: ");
+		double valorSaque = sc.nextDouble();
+		conta.saque(valorSaque);
+		System.out.println("Conta atualizada");
+		System.out.println(conta);
 		
 		sc.close();
 	}
